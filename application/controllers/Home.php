@@ -122,4 +122,42 @@ class Home extends CI_Controller
 
         $this->load->view('frontend/v_struk', $struk);
     }
+
+    // list data visitor masuk
+    public function visitorList()
+    {
+        $where = array('status' => 'Masuk');
+        $whereBelum = array('status' => 'Belum');
+        $header['judul'] = 'Visitor List';
+        $data['visitor'] = $this->home_model->getDataMasuk($where);
+        $data['masuk'] = $this->db->affected_rows($this->home_model->getDataMasuk($where));
+        $data['belum'] = $this->db->affected_rows($this->home_model->getDataMasuk($whereBelum));
+        $data['total'] = $this->db->affected_rows($this->home_model->getAll());
+        // print_r($data['masuk']);
+        // echo "<br>";
+        // print_r($data['belum']);
+        // echo "<br>";
+        // print_r($data['total']);
+        $this->load->view('templates/v_header_home', $header);
+        $this->load->view('home/v_visitor_list', $data);
+        $this->load->view('templates/v_footer_home');
+    }
+
+    // data policy
+    public function policy()
+    {
+        $header['judul'] = 'Policy';
+        $this->load->view('templates/v_header_home', $header);
+        $this->load->view('home/v_data_policy');
+        $this->load->view('templates/v_footer_home');
+    }
+
+    public function contact()
+    {
+        $header['judul'] = 'Contact';
+        $data['contact'] = $this->home_model->getContact();
+        $this->load->view('templates/v_header_home', $header);
+        $this->load->view('home/v_contact', $data);
+        $this->load->view('templates/v_footer_home');
+    }
 }
