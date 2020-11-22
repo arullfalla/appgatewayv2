@@ -18,4 +18,5 @@
         You can use them for noncommercial and commercial purposes.
         You do not need to ask permission from or provide credit to the creator.
     </p>
+    <a href="<?= base_url('login') ?>" class="btn btn-primary">Login</a>
 </div>
