@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin_model extends CI_Model
 {
     private $table = "tblvisitor";
+    private $tableContact = "tblcontact";
 
     // tampilan data metode pagination
     public function get_count()
@@ -85,5 +86,21 @@ class Admin_model extends CI_Model
     public function simpanimport($data)
     {
         return $this->db->insert($this->table, $data);
+    }
+
+    // get edit contact us
+    public function getContact($where)
+    {
+        $this->db->where($where);
+        $query = $this->db->get($this->tableContact);
+        return $query->result();
+    }
+
+    // simpan contact
+    public function editContact($data, $where)
+    {
+        $this->db->where($where);
+        $query = $this->db->update($this->tableContact, $data);
+        return $query;
     }
 }

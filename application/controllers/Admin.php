@@ -166,4 +166,40 @@ class Admin extends CI_Controller
         $this->load->view('admin/v_cetak_masuk', $data);
         $this->load->view('templates/v_footer_admin');
     }
+
+    public function ContactEdit()
+    {
+        $header['judul'] = "Contact Us";
+        $where = array('id_kantor' => 1);
+        $data['contact'] = $this->admin_model->getContact($where);
+        $this->load->view('templates/v_header_admin', $header);
+        $this->load->view('admin/v_form_contact', $data);
+        $this->load->view('templates/v_footer_admin');
+    }
+
+    public function contactSave()
+    {
+        $nama = $_POST['nama'];
+        $alamat = $_POST['alamat'];
+        $tlp = $_POST['tlp'];
+        $support = $_POST['support'];
+        $billing = $_POST['billing'];
+
+        $data = array(
+            'nama' => $nama,
+            'alamat' => $alamat,
+            'tlp' => $tlp,
+            'support' => $support,
+            'billing' => $billing,
+
+        );
+
+        $where = array(
+            'id_kantor' => 1
+        );
+
+        $this->admin_model->editContact($data, $where);
+        $this->session->set_flashdata('data', 'Data Berhasil di Perbaharui');
+        redirect('admin/contactedit');
+    }
 }

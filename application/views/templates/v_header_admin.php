@@ -25,7 +25,7 @@
                     <a class="nav-link" href="<?php echo base_url() . 'admin/datavisitor' ?>">Data Visitor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+                    <a class="nav-link" href="<?php echo base_url() . 'admin/contactedit' ?>" tabindex="-1" aria-disabled="true">Contact Us</a>
                 </li>
 
                 <li class="nav-item dropdown">
