@@ -34,7 +34,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <h6 class="dropdown-header">Hi ! Jika keluar silahkan Logout</h6>
-                        <a class="dropdown-item" href="<?php echo base_url() . 'login/keluar'; ?>">Logout</a>
+                        <a class=" dropdown-item" href="<?php echo base_url() . 'admin/deleteall'; ?>" onclick="return confirm('Anda yakin menghapus semua data pengunjung?')">Hapus Semua Data Pengunjung ! (Warning)</a>
+                        <a class=" dropdown-item" href="<?php echo base_url() . 'login/keluar'; ?>">Logout</a>
                     </div>
                 </li>
             </ul>

@@ -158,6 +158,13 @@ class Admin extends CI_Controller
         redirect('admin/datavisitor');
     }
 
+    public function deleteAll()
+    {
+        $this->admin_model->hapusSemua();
+        $this->session->set_flashdata('data', 'Data Pengunjung Berhasil di Hapus semua');
+        redirect('admin/datavisitor');
+    }
+
     public function CetakPrint()
     {
         $header['judul'] = 'Cetak Data Masuk';

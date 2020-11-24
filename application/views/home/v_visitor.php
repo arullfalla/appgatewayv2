@@ -12,6 +12,8 @@
                     <form action="<?php echo base_url() . 'home/masuk'; ?>" method="post">
                         <!-- data id -->
                         <input type="hidden" name="id" value="<?php echo $visitor->id ?>">
+                        <!-- nama pengunjung -->
+                        <input type="hidden" name="nama" value="<?php echo $visitor->nama ?>">
                         <!-- status ubah menjadi sudah -->
                         <input type="hidden" name="status" value="Masuk">
                         <!-- Camera Webcam -->

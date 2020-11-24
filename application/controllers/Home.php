@@ -66,6 +66,7 @@ class Home extends CI_Controller
 
     public function masuk()
     {
+        $nama = $_POST['nama'];
         $id = $_POST['id'];
         $status = $_POST['status'];
         // gambar upload
@@ -90,6 +91,7 @@ class Home extends CI_Controller
         );
 
         $this->home_model->updateMasuk($data, $where);
+        $this->cetakStruk($nama);
         $this->session->set_flashdata('data2', 'Selamat Datang Pengunjung !');
         redirect('home');
     }
@@ -112,15 +114,37 @@ class Home extends CI_Controller
         }
     }
 
-    public function cetakStruk()
+    public function cetakStruk($name)
     {
-        $struk['kop'] = array(
-            'header' => 'Selamat Datang',
-            'isi' => 'Struk, Pengambilan Souvenir',
-            'footer' => 'Terima Kasih'
-        );
+        $this->load->library('escpos');
 
-        $this->load->view('frontend/v_struk', $struk);
+        try {
+            // inisialisasi printer
+            $connector = new Escpos\PrintConnectors\FilePrintConnector("/dev/usb/lp0");
+
+            /* Print a "Hello world" receipt" */
+            $printer = new Escpos\Printer($connector);
+            $printer->selectPrintMode(Escpos\Printer::MODE_FONT_B);
+            $printer->setJustification(Escpos\Printer::JUSTIFY_CENTER);
+            $printer->text("Selamat Datang \n");
+            $printer->text("Tuan/Nyonya " . $name . "\n");
+            $printer->text("==============================\n");
+            $printer->text("\n");
+            $printer->text("\n");
+            $printer->text("Tunjukan Kertas Ini Untuk Mengambil\n");
+            $printer->text("Souvenir di Both Pengambilan");
+            $printer->text("\n");
+            $printer->text("\n");
+            $printer->text("==============================\n");
+            $printer->text("Terima Kasih\n");
+            $printer->feed(2);
+
+
+            /* Close printer */
+            $printer->close();
+        } catch (Exception $e) {
+            echo "Couldn't print to this printer: " . $e->getMessage() . "\n";
+        }
     }
 
     // list data visitor masuk

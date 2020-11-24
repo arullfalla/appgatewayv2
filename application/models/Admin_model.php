@@ -65,6 +65,12 @@ class Admin_model extends CI_Model
         return $query;
     }
 
+    // hapus semua data pada table
+    public function hapusSemua()
+    {
+        $this->db->truncate($this->table);
+    }
+
     // ambil data terakhir barcode + 1
     public function lastBarcode()
     {
