@@ -120,6 +120,10 @@ class Home extends CI_Controller
 
         try {
             // inisialisasi printer
+
+            // if using windows $connector = new Escpos\PrintConnectors\WindowsPrintConnector("POS-58");
+
+            // if using linux
             $connector = new Escpos\PrintConnectors\FilePrintConnector("/dev/usb/lp0");
 
             /* Print a "Hello world" receipt" */

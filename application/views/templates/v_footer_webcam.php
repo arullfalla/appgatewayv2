@@ -7,6 +7,7 @@
 
 
 <script src="<?php echo base_url(); ?>js/webcam.min.js"></script>
+<script src="<?php echo base_url(); ?>js/recta.js"></script>
 
 <!-- Configure a few settings and attach camera -->
 <script language="JavaScript">
@@ -35,6 +36,7 @@
 
     };
 </script>
+
 </body>
 
 </html>
